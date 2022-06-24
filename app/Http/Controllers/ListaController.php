@@ -109,4 +109,23 @@ class ListaController extends Controller
     {
         //
     }
+
+    /**
+     * Cadastra um produto a lista
+     *
+     * @param integer $idLista
+     * @param Request $request
+     * @return Response
+     */
+    public function adicionarProduto(int $idLista, Request $request)
+    {
+        $listaProduto = new ListaProduto($request->all());
+        $listaProduto->id_lista = $idLista;
+        $listaProduto->save();
+
+        return redirect()
+               ->route('lista.show',['id'=>$idLista])
+               ->with('success','Produtos adicionado com sucesso!');
+
+    }
 }

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use App\Models\{User,Produto};
+
 class ListaProduto extends Model
 {
     use HasFactory, SoftDeletes;
@@ -41,4 +43,23 @@ class ListaProduto extends Model
      * @var array
      */
     protected $fillable = ['id_lista','id_produto','status'];
+
+    /**
+     * ---------------------------------
+     * | Relacionamentos
+     * | https://laravel.com/docs/9.x/eloquent-relationships
+     * ----------------------------------
+     */
+
+     /**
+      * Retorna o produto
+      *
+      * @return void
+      */
+     public function produto()
+     {
+        return $this->hasOne(Produto::class,'id_produto','id_produto');
+     }
+    
+     
 }

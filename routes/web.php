@@ -52,6 +52,8 @@ Route::prefix('listas')->group(function () {
                                 ->name('lista.store');
     Route::post('/{id}/atualizar', [ListaController::class, 'update'])
                                 ->name('lista.update');
+    Route::post('/{idLista}/adicionarProduto',[ListaController::class,'adicionarProduto'])
+                                ->name('lista.adicionarProduto');
 });
 
 

@@ -49,9 +49,11 @@
                 <td>
                     {{ $lista->nome }}
                 </td>
-                <td></td>
                 <td>
-                    {!! $lista->id_user !!}                        
+                    {!! $lista->produtos->count() !!}
+                </td>
+                <td>
+                    {!! $lista->usuario->name !!}                       
                 </td>
                 <td>
                     {{ $lista->updated_at->format('d/m/Y H:i') }}h
