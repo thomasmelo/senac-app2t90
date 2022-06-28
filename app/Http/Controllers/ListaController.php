@@ -10,6 +10,7 @@ use App\Models\{
     Produto,
     ListaProduto
 };
+use Illuminate\Support\Facades\Redirect;
 
 class ListaController extends Controller
 {
@@ -127,5 +128,16 @@ class ListaController extends Controller
                ->route('lista.show',['id'=>$idLista])
                ->with('success','Produtos adicionado com sucesso!');
 
+    }
+
+
+    public function removerProduto(int $id_lista_produto)
+    {
+        $listaProduto = ListaProduto::find($id_lista_produto);
+        $listaProduto->delete();
+        $listaProduto->save();
+        return redirect()
+                ->back()
+                ->with('danger','Removido co sucesso!');
     }
 }

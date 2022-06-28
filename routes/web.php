@@ -54,6 +54,9 @@ Route::prefix('listas')->group(function () {
                                 ->name('lista.update');
     Route::post('/{idLista}/adicionarProduto',[ListaController::class,'adicionarProduto'])
                                 ->name('lista.adicionarProduto');
+
+    Route::post('/{idListaProduto}/removerProduto',[ListaController::class,'removerProduto'])
+                                ->name('lista.removerProduto');
 });
 
 

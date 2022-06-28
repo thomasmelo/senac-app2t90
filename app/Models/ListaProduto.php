@@ -60,6 +60,27 @@ class ListaProduto extends Model
      {
         return $this->hasOne(Produto::class,'id_produto','id_produto');
      }
+
+     public function iconeStatus()
+     {
+        switch ($this->attributes['status']) {
+            case 0:
+                 return '<div class="btn btn-warning">
+                            <i class="fas fa-hourglass-start"></i>
+                        </div>';
+                break;
+
+            case 1:
+                    return '<div class="btn btn-success">
+                                <i class="fas fa-check-double"></i>
+                            </div>';
+                break;
+
+            default:
+                return '-';
+                break;
+        }
+     }
     
      
 }
