@@ -7,8 +7,8 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ListaController;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return redirect()->route('produto.index');
+})->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -19,7 +19,7 @@ Route::get('/dashboard', function () {
  * | PRODUTOS
  * |-------------------------
  */
-Route::prefix('produtos')->group(function () {
+Route::prefix('produtos')->middleware(['auth'])->group(function () {
     Route::get('/',             [ProdutoController::class, 'index'])
                                 ->name('produto.index');
     Route::get('/novo',         [ProdutoController::class, 'create'])
@@ -39,7 +39,7 @@ Route::prefix('produtos')->group(function () {
  * | LISTAS DE COMPRAS
  * |-------------------------
  */
-Route::prefix('listas')->group(function () {
+Route::prefix('listas')->middleware(['auth'])->group(function () {
     Route::get('/',             [ListaController::class, 'index'])
                                 ->name('lista.index');
     Route::get('/novo',         [ListaController::class, 'create'])
@@ -56,7 +56,9 @@ Route::prefix('listas')->group(function () {
                                 ->name('lista.adicionarProduto');
 
     Route::post('/{idListaProduto}/removerProduto',[ListaController::class,'removerProduto'])
-                                ->name('lista.removerProduto');
+                                ->name('lista.removerProduto');                                
+    Route::post('/{idListaProduto}/confirmarProduto',[ListaController::class,'confirmarProduto'])
+                                ->name('lista.confirmarProduto');
 });
 
 

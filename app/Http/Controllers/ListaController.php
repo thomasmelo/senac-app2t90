@@ -130,7 +130,12 @@ class ListaController extends Controller
 
     }
 
-
+    /**
+     * Remove um item da lista de compras
+     *
+     * @param integer $id_lista_produto
+     * @return void
+     */
     public function removerProduto(int $id_lista_produto)
     {
         $listaProduto = ListaProduto::find($id_lista_produto);
@@ -138,6 +143,18 @@ class ListaController extends Controller
         $listaProduto->save();
         return redirect()
                 ->back()
-                ->with('danger','Removido co sucesso!');
+                ->with('danger','Removido com sucesso!');
     }
+
+    public function confirmarProduto(int $id_lista_produto)
+    {
+        $listaProduto = ListaProduto::find($id_lista_produto);        
+        $listaProduto->status = 1;
+        $listaProduto->save();
+        return redirect()
+                ->back()
+                ->with('success','Confirmado com sucesso!');
+    }
+
+
 }

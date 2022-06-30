@@ -40,6 +40,14 @@
                     Listas de Compras
                 </a>
               </li>
+
+              <li class="breadcrumb-item">
+                <a href="{{ route('sair') }}" class="btn btn-info">
+                  <i class="fas fa-sign-out-alt"></i>
+                    Sair
+                </a>
+              </li>
+              
               @yield('menu')                         
             </ol>             
         </nav>
