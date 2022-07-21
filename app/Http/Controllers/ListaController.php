@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Mail;
 
+# EMAILS
+use App\Mail\EnviarLista;
+#MODELS
 use App\Models\{
     Lista,
     Produto,
     ListaProduto
 };
-use Illuminate\Support\Facades\Redirect;
+
 
 class ListaController extends Controller
 {
@@ -154,6 +159,25 @@ class ListaController extends Controller
         return redirect()
                 ->back()
                 ->with('success','Confirmado com sucesso!');
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param integer $id
+     * @return void
+     */
+    public function enviarListaPorEmail(int $id)
+    {
+        $lista = Lista::find($id);
+
+        // Enviar a lista por e-mail
+        Mail::to($lista->usuario->email)
+            ->send(new EnviarLista($lista));
+        return redirect()
+                ->back()
+                ->with('success','E-mail enviado com sucesso!');        
+        
     }
 
 

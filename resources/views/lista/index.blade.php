@@ -11,6 +11,19 @@
         Nova Lista de compras
     </a>
 </h1>
+@if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if (session('danger'))
+        <div class="alert alert-danger">
+            {{ session('danger') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 <table class="table table-hover">
     <thead>
         <tr>
@@ -31,6 +44,11 @@
                         href="{{ route('lista.show', ['id'=>$lista->id_lista]) }}">
                             <i class="fa-solid fa-eye"></i>
                             Ver
+                        </a>
+                        <a class="btn btn-info mt-1"
+                            href="{{ route('lista.enviarListaPorEmail', ['id'=>$lista->id_lista]) }}">
+                            <i class="fa-solid fa-paper-plane"></i>  
+                            Enviar lista por E-mail
                         </a>
                         <a class="btn btn-primary mt-1" 
                         href="{{ route('lista.edit', ['id'=>$lista->id_lista]) }}">

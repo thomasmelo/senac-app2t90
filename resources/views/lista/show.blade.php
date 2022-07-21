@@ -19,7 +19,16 @@
     @endif
 
     <h1>Cod.: {{ $lista->id_lista }} - {{ $lista->nome }}</h1>
-    <p>Status: {{ $lista->status }} - Usuário: {{ $lista->id_user }}</p>
+    <p>
+        Status: {{ $lista->status }} 
+        - Usuário: {{ $lista->id_user }}
+        - 
+        <a class="btn btn-success"
+          href="{{ route('lista.enviarListaPorEmail', ['id'=>$lista->id_lista]) }}">
+          <i class="fa-solid fa-paper-plane"></i>  
+          Enviar lista por E-mail
+        </a>
+    </p>
 
     {{-- FORMULARIO --}}
     <form action="{{ route('lista.adicionarProduto', ['idLista' => $lista->id_lista]) }}" method="post">

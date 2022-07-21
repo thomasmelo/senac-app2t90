@@ -48,6 +48,10 @@ Route::prefix('listas')->middleware(['auth'])->group(function () {
                                 ->name('lista.show');
     Route::get('/{id}/editar',  [ListaController::class, 'edit'])
                                 ->name('lista.edit');
+                                
+    Route::get('/{id}/enviarEmail',  [ListaController::class, 'enviarListaPorEmail'])
+                                ->name('lista.enviarListaPorEmail');
+
     Route::post('/cadastrar',   [ListaController::class, 'store'])
                                 ->name('lista.store');
     Route::post('/{id}/atualizar', [ListaController::class, 'update'])
